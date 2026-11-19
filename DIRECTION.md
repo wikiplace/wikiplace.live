@@ -10,7 +10,8 @@ Wikiplace (wikiplace.live) is the community wiki for Wplace: its artworks, allia
 - **Content lives in git.** The vault in this repository is the source of truth. Edits commit to it, or open pull requests against it, through the wikiplace[bot] GitHub App. The site shows an edit once the deploy that contains it finishes, and the editor follows that progress on the site.
 - **Trust is earned and scoped.** Admins promote people by hand, and weighted reputation promotes them automatically. Alliances are groups that own their pages, so members get more trust on their alliance's pages than they have site-wide.
 - **Built on Svartz.** Wikiplace uses first-party `@svartz/*` packages and adds no app code that a plugin could own. Svartz PRD [mia-cx/svartz#338](https://github.com/mia-cx/svartz/issues/338) covers accounts, permissions, commit mode, the moderator dashboard, moderation and history. PRD [mia-cx/svartz#360](https://github.com/mia-cx/svartz/issues/360) covers the article format: templates, notices, wiki callouts, generated navboxes and uploads.
-- **Articles are MediaWiki, modernised.** Typed templates (Artwork, Alliance, War) drive the infoboxes and the editor's forms. Notices are calm banners. Navboxes generate themselves from fields, so an alliance page lists its artworks without upkeep.
+- **Articles are MediaWiki, modernised.** Page types drive the infoboxes and the editor's forms: Painter (a user's own page), Alliance, Community, Location, Artwork, Official event, Community event, Conflict (extends Community event), Feature, Colour, Release, Tool and Motif. Their fields are in [docs/page-types.md](docs/page-types.md).
+- **Wikiplace is also the how-to-play wiki for Wplace**: Features, the full palette, release notes and tools. Notices are calm banners. Navboxes generate themselves from fields, so an alliance page lists its artworks without upkeep.
 - **An interactive map with timelapses** comes later as its own plugin. It renders archived map data that the community crowdsources through Caelestis, a scraper and an incremental archive. It adds a map callout and the Wplace location field kind.
 
 ## Current state (November 2026)
@@ -24,6 +25,8 @@ Wikiplace (wikiplace.live) is the community wiki for Wplace: its artworks, allia
 - There's no email and password sign-in, by design.
 - Permissions are `namespace:feature:action` grants, set to allow, deny or unset. They're given to actors (accounts, roles, groups, guest, signed-in) on objects (site, vault, folder, page), following Vesta's model.
 - User pages live in git at `users/<handle>`. The owner always commits there directly.
+- Painters are the users: a painter's article is their own user page. Nobody writes standalone articles about other players, except public figures such as streamers.
+- We say "page type", never "template", because on Wplace a template is the overlay image people paint from.
 - wikiplace[bot] attributes every action to the person who took it: commits are authored as them, and comments and reviews carry a header naming them.
 - The GitHub sync uses both webhooks and a reconcile poll.
 - Everyone edits on the site, so Obsidian compatibility doesn't shape the format. Template fields are flat, typed frontmatter, because templates, categories, navboxes and search can query a field by name.
